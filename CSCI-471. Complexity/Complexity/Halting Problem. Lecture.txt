@@ -1,0 +1,41 @@
+10 minutes to the lecture....
+
+Relationship between Atm and HALTtm
+Recognizer for HALTtm will Accept on accept/reject
+Decider for HALTtm wiill reject on Loop forever and accept otherwise
+I guess Decider for HALTtm is not possible?
+
+Кайсар Касенов
+[😴 Sticker]
+
+Мирас Кенжегалиевadmin
+Decider for hulk
+Theorem: HALT is undecidable
+
+Proof:
+Suppose we have decider R for HALTtm. With R we can consutruct TM that can decide Atm, but that is not possible.
+All regular languages are decidable
+Kinds of languages
+-Decidable (Context-free and Regular languages)
+-Undecidable (Atm and HALTtm)
+-Unrecognizable (-Atm)
+if A is decidable then A' is decidable
+if A is undecidable then A' is unrecognizable
+if A is unrecognizable, then A' is undecidable
+Which Languages class?
+
+1) Binary-Palindrome
+2) -F (where F is finite)
+3) Aaaa = {<M> | M is s TM that accepts string aaa}
+4) Etm = {<M> | M is s TM that accepts nothing}
+5) -Etm
+6) EQtm = {<M1, M2> | M1 and M2 are TMs that accept exactly the same string}
+7) -EQtm
+1) decidable
+2) decidable
+3) recognizable, undecidable
+4) unrecognizable
+5) unrecognizable
+6) unrecognizable
+7) unrecognizable
+is it right?

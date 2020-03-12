@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <math.h>
+int main(void) {
+	setvbuf (stdout, NULL, _IONBF, 0);
+
+	double x1;
+	double x2;
+	double a;
+	double b;
+	double c;
+
+	printf("Task 1\n");
+	printf("\nPlease write the first coefficient in quadratic equation:\n");
+	scanf("%lg", &a);
+
+	printf("\nPlease write the second coefficient in quadratic equation:\n");
+	scanf("%lg", &b);
+
+	printf("\nPlease write the third coefficient in quadratic equation:\n");
+	scanf("%lg", &c);
+
+	x1 = (-b+sqrt(b*b-4*a*c))/(2*a);
+
+	x2 = (-b-sqrt(b*b-4*a*c))/(2*a);
+
+	printf("\nTwo squares of this equation: %lg, %lg \n", x1, x2);
+
+	printf("\nTask 2\n");
+	double s;
+	printf("\nPlease write the number of seconds past midnight:\n");
+	scanf("%lg", &s);
+
+	int h=s/3600;
+	int m=((s-3600*h)/60);
+	int ss=(s-(3600*h)-m*60);
+
+
+	printf("\nExact time is: %i:%i:%i\n", h, m, ss);
+
+	printf("\nTask3\n");
+	printf("\nPlease write a variable x to approximate the value of sin(x):\n");
+
+	double x;
+	double taylor;
+	scanf("%lg", &x);
+
+	taylor = x-(x*x*x/6)+(x*x*x*x*x/120);
+	printf("\nAnswer:%lg\n", taylor);
+
+return 0;
+}

@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+double expApprox(double x, int n)
+{
+	int i;
+	double term = 1;
+	double exp = 1;
+
+	for (i = 1; i < n; i++)
+	{
+		term *= (x / i);
+		exp += term;
+	}
+
+	return exp;
+}
+
+double sinApprox(double x, int n)
+{
+	int i;
+	int j;
+	int k = 0;
+	double term;
+	double exp = 0;
+	double fact = 1;
+
+	for (i = 1; i <= 2 * n - 1; i = i + 2)
+	{
+
+		k++;
+		for (j = 1; j <= i; j++)
+		{
+			//fact = 1;
+			fact *= j;
+		}
+
+		term = (pow (x, i) * pow(-1, k + 1)) / fact;
+		fact = 1;
+		exp += term;
+
+	}
+
+	return exp;
+}
+
+_Bool isPrime(int n)
+{
+	int i;
+	_Bool isPrime = 1;
+
+	for (i = 2; i < n; i++)
+	{
+		if (n % i == 0)
+		{
+			isPrime = 0;
+		}
+	}
+
+	return isPrime;
+}
+
+int sumOfDigits(int n)
+{
+	int sum = 0;
+
+	while (n > 0)
+	{
+		sum += (n % 10);
+		n = (n / 10);
+	}
+
+	return sum;
+}
+
+void main()
+{
+	setvbuf(stdout, NULL, _IONBF, 0);
+
+	double x;
+	int n;
+	printf("Please, enter x value \n");
+	scanf("%lg", &x);
+	printf("Please, enter n value \n");
+	scanf("%i", &n);
+
+
+	printf("Approximation is: %lg", sinApprox(x, n));
+
+	int a;
+	printf("\nPlease, enter number, for determining prime or not");
+	scanf("%i", &a);
+	printf("%i", isPrime(a));
+
+
+	int y;
+	printf("\nPlease, enter number, for sum of digits \n");
+	scanf("%i", &y);
+
+	printf("%i", sumOfDigits(y));
+
+
+}

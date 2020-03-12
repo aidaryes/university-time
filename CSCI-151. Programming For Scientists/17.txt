@@ -1,0 +1,134 @@
+Task 1:
+#include <stdio.h>
+#include <math.h>
+
+void smal(int size, double arr[]) {
+int k;
+double min;
+for(k=0; k<size; k++) {
+	if(k==0) {
+		min=arr[0];
+	}
+	if(min>arr[k]) {
+		min=arr[k];
+	}
+} 	printf("%f", min);
+}
+
+int main () {
+setvbuf(stdout, NULL, _IONBF, 0);
+
+
+double val[5]={1, 2, 3, 4, 5};
+smal(5, val);
+
+return 0;
+}
+
+
+Task 3:
+#include <stdio.h>
+#include <math.h>
+
+void func1(int size, double arr[]) {
+int k;
+for(k=0; k<size; k++) {
+printf("Element arr[%i]: %f \n", k, arr[k]);
+}
+}
+
+void func2(int size, double arr[]) {
+double arr2[size];
+int j, i;
+for(j=0; j<size; j++) {
+arr2[j]=arr[size-1-j];
+}
+for(i=0; i<size; i++){
+arr[i]=arr2[i];
+}
+}
+
+int main () {
+setvbuf(stdout, NULL, _IONBF, 0);
+
+
+double val[5]={1, 2, 3, 4, 5};
+func1(5, val);
+func2(5, val);
+func1(5, val);
+
+return 0;
+}
+
+Task 4:
+#include <stdio.h>
+#include <math.h>
+
+void transpose(int row, int col, double orig[row][col], double mod[col][row])
+{
+	int i;
+	int j;
+
+	for (i = 0; i < col; i++)
+	{
+		for (j = 0; j < row; j++)
+		{
+			mod[i][j] = orig[j][i];
+		}
+	}
+}
+int main()
+{
+	setvbuf(stdout, NULL, _IONBF, 0);
+	srand (time(NULL));
+
+	int i;
+	int j;
+
+	double original[3][5];
+	double mod[5][3];
+
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 5; j++)
+		{
+			original[i][j] = i + j;
+		}
+	}
+
+	for (i = 0; i < 5; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			mod[i][j] = 0;
+		}
+	}
+
+	transpose(3, 5, original, mod);
+
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 5; j++)
+		{
+			printf("%3lg", original[i][j]);
+		}
+
+		printf("\n");
+	}
+
+	printf("\n");
+
+	for (i = 0; i < 5; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			printf("%3lg", mod[i][j]);
+		}
+
+		printf("\n");
+	}
+
+	printf("\n");
+
+return 0;
+}

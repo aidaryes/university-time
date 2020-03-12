@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+	int ID;
+	double longitude;
+	double latitude;
+	double altitude;
+	double temperatures[12];
+	double max;
+	double min;
+	double aver;
+	double var;
+}Wrecord;
+
+int main(void) {
+	setvbuf(stdout, NULL, _IONBF, 0);
+
+	Wrecord record[13];
+	int i = 0;
+	int j = 0;
+
+	FILE *infile;
+
+	infile = fopen("data.txt", "r");
+
+	while (!feof(infile) && i < 13)
+	{
+		fscanf(infile, "%i %lg %lg %lg", &record[i].ID, &record[i].longitude, &record[i].latitude, &record[i].altitude);
+
+		for (j = 0; j < 12; j++)
+		{
+			fscanf(infile, "%lg", &record[i].temperatures[j]);
+		}
+
+
+		i++;
+	}
+
+
+	fclose(infile);
+
+
+
+	for (i = 0; i < 13; i++)
+	{
+		record[i].max = record[i].temperatures[0];
+
+		for (j = 0; j < 12; j++)
+		{
+			if (record[i].max < record[i].temperatures[j])
+			{
+				record[i].max = record[i].temperatures[j];
+			}
+		}
+	}
+
+	for (i = 0; i < 13; i++)
+	{
+		record[i].min = record[i].temperatures[0];
+
+		for (j = 0; j < 12; j++)
+		{
+			if (record[i].min > record[i].temperatures[j])
+			{
+				record[i].min  = record[i].temperatures[j];
+			}
+		}
+	}
+
+	for (i = 0; i < 13; i++)
+	{
+		record[i].aver = 0;
+
+		for (j = 0; j < 12; j++)
+		{
+			record[i].aver+= record[i].temperatures[j];
+		}
+
+		record[i].aver = record[i].aver / 12;
+	}
+
+	for (i = 0; i < 13; i++)
+	{
+		record[i].var = 0;
+
+		for (j = 0; j < 12; j++)
+		{
+			record[i].var += (record[i].temperatures[j] - record[i].aver) * (record[i].temperatures[j] - record[i].aver);
+		}
+
+		record[i].var = record[i].var / 12;
+	}
+
+	printf("  id     longit   latit     altit   min   ave      max   var");
+
+	for (i = 0; i < 13; i++)
+	{
+		printf("\n%7i %7lg %7lg %7lg %7lg %7lg %7lg %7lg", record[i].ID, record[i].longitude, record[i].latitude, record[i].altitude, record[i].min, record[i].aver, record[i].max, record[i].var);
+	}
+	return 0;
+}

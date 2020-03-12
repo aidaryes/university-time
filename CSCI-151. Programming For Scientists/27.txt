@@ -1,0 +1,91 @@
+//In collaboration of Tauyekel Kunzhol and Aidar Yessembayev
+Task 1:
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct {
+	int id;
+	char name[41];
+} student;
+
+const int size = 8;
+
+const student roster[8] =
+		{{ 100001, "Ziggy Marley" },
+		{ 123456, "Abe Lincoln" },
+		{ 239484, "Jed Clampett" },
+		{ 443892, "Marge Simpson" },
+		{ 517840, "Betty Britain" },
+		{ 780556, "David Bowie" },
+		{ 900154, "Gore Vidal" },
+		{ 999900, "Nursultan Jones" } };
+
+int findStudent(int id) {
+	// Modify int array binary search impl.
+	// to work with student roster
+int min=0;
+int max=8;
+while(min<=max){
+	int answer = (min+max)/2;
+	if(roster[answer].id==id){
+		return answer;
+	}
+	else if(roster[answer].id>id){
+		max=answer-1;
+	}
+	else {
+		min=answer+1;
+	}
+}
+return -1;
+}
+
+int main(void) {
+
+	printf("Test 0: %i \n", findStudent(99));
+	printf("Test 1: %i \n", findStudent(100001));
+	printf("Test 2: %i \n", findStudent(123456));
+	printf("Test 3: %i \n", findStudent(300000));
+	printf("Test 4: %i \n", findStudent(780556));
+	printf("Test 5: %i \n", findStudent(999900));
+	printf("Test 6: %i \n", findStudent(999999));
+
+	return 0;
+}
+
+Task 3:
+#include <stdio.h>
+#include <stdlib.h>
+
+double func(double x) {
+	return x*x*x + 2*x*x - 2;
+}
+
+double zeroFinder(double min, double max, double error) {
+	// Put your code here!
+	double in_max=max;
+	double in_min=min;
+	while(in_min<=in_max){
+		double answer = (min+max)/2;
+		if(func(answer)==0 || (max-min)<=0){
+			return answer;
+		}
+		else if (func(answer)<0){
+			min =answer + error;
+		}
+		else if(func(answer)>0) {
+			max = answer - error;
+		}
+	}
+	return -1;
+}
+
+int main(void) {
+	// Testing code
+	printf("zero:%f \n", zeroFinder(0.0, 1.0, 0.01));
+	printf("zero:%f \n", zeroFinder(0.0, 1.0, 0.001));
+	printf("zero:%f \n", zeroFinder(0.0, 1.0, 0.000001));
+	printf("zero:%f \n", zeroFinder(0.0, 1.0, 0.0000000001));
+
+	return 0;
+}

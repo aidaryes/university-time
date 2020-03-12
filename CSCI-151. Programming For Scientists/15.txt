@@ -1,0 +1,116 @@
+Task 1:
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+	int r, g, b;
+}Color;
+
+typedef struct {
+	int x, y;
+}Coords;
+
+typedef struct {
+	Coords upperLeftCorner;
+	int sideLength;
+	Color outlineColor;
+	Color fillColor;
+}Square;
+
+typedef struct {
+	int longerSide;
+	Square squareProperties;
+}Rectangle;
+
+void func1()
+{
+	//for some reason,declaration and assigning in that way must be in the same line
+	Square coolSquare = {
+			{15, 23},
+			16,
+			{128, 128, 200},
+			{200, 225, 180}
+	};
+
+	Rectangle betterThanSquareRect = {
+			30,
+			{
+					{10, 5},
+					20,
+					{120, 20, 200},
+					{180, 60, 15}
+			}
+	};
+}
+
+
+Task 3:
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef struct {
+	int id;
+	char type;
+	int balance;
+}BankCustomer;
+
+void func2()
+{
+	FILE *file;
+
+	file = fopen ("pentagon.txt", "r");
+
+	BankCustomer badassCustomers[10];
+
+
+	int i = 0;
+
+	do
+	{
+		fscanf(file, "%i %c %i", &badassCustomers[i].id, &badassCustomers[i].type, &badassCustomers[i].balance);
+		i++;
+	} while (!feof(file) && i < 10);
+
+
+	fclose(file);
+
+	printf("Success!");
+
+	int avgBalanceCheck = 0;
+	int avgBalanceSave = 0;
+	int avgBalanceDep = 0;
+
+	int numAvgCheck = 0;
+	int numAvgSave = 0;
+	int numAvgDep = 0;
+
+	for (i = 0; i < 10; i++)
+	{
+		if (badassCustomers[i].type == 'c')
+		{
+			avgBalanceCheck += badassCustomers[i].balance;
+			numAvgCheck++;
+		}
+		else if (badassCustomers[i].type == 's')
+		{
+			avgBalanceSave += badassCustomers[i].balance;
+			numAvgSave++;
+		}
+		else if (badassCustomers[i].type == 'd')
+		{
+			avgBalanceDep += badassCustomers[i].balance;
+			numAvgDep++;
+		}
+
+	}
+
+	avgBalanceCheck = avgBalanceCheck / numAvgCheck;
+	avgBalanceSave = avgBalanceSave / numAvgSave;
+	avgBalanceDep = avgBalanceDep / numAvgDep;
+
+	printf("\nAverage of checking deposit: %i",avgBalanceCheck);
+	printf("\nAverage of save deposit: %i",avgBalanceSave);
+	printf("\nAverage of deposit deposit: %i",avgBalanceDep);
+
+}

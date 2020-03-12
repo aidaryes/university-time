@@ -1,0 +1,66 @@
+Task 1:
+#include <stdio.h>
+int main (void) {
+setvbuf (stdout, NULL, _IONBF, 0);
+
+	int poly;
+	printf("Write a polynomial:");
+	scanf("%i", &poly);
+
+	while (poly>=0) {
+	do {
+	 int octal=poly%8;
+	 poly=poly/8;
+		printf("%i ", octal);
+
+	} while (poly > 0);
+	}
+	printf("Done");
+	return 0;
+}
+
+Task 2:
+#include <stdio.h>
+int main (void) {
+setvbuf (stdout, NULL, _IONBF, 0);
+
+	int poly;
+	printf("Write a polynomial:");
+	scanf("%i", &poly);
+
+	while (poly>=0) {
+	do {
+	 int hexa=poly%16;
+	 poly=poly/16;
+		printf("%i ", hexa);
+
+	} while (poly > 0);
+	}
+	printf("Done");
+	return 0;
+}
+
+Task 3:
+#include <stdio.h>
+int main (void) {
+setvbuf (stdout, NULL, _IONBF, 0);
+
+int poly;
+int b;
+printf("Write a polynomial: \n");
+scanf("%i", &poly);
+
+printf("Write a base of expansion: \n");
+scanf("%i", &b);
+
+while (poly>0 && b>1) {
+do {
+int result=poly%b;
+poly=poly/b;
+printf("%i ", result);
+
+} while (poly > 0 && b>1);
+}
+printf("Done");
+return 0;
+}

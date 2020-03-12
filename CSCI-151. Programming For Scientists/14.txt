@@ -1,0 +1,78 @@
+Task 1:
+#include <stdio.h>
+struct time {
+	int hours;
+	int minutes;
+	char amORpm;
+};
+int main () {
+	setvbuf(stdout, NULL,_IONBF, 0);
+
+	int min;
+	int a;
+	int b;
+	printf("Please write time in minutes ");
+	scanf("%i", &min);
+
+	struct time now = {min};
+	now.hours = a;
+	a = min/60;
+	now.minutes = b;
+	b = min-a*60;
+	now.hours = a % 12;
+	printf ("Time in hours %i, ", now.hours);
+	printf ("minutes %i, ", now.minutes);
+if (now.amORpm == 'a') {
+	printf ("in the morning");
+} else {
+	printf ("in the evening");
+}
+return 0;
+}
+
+Task 2:
+#include <stdio.h>
+struct student {
+	int ID;
+	char gender;
+	int part;
+	int exer;
+	int assi;
+	int mid;
+	int ex;
+	int final;
+};
+int main () {
+	struct student a;
+	setvbuf(stdout, NULL,_IONBF, 0);
+	printf("Please write your ID: ");
+	scanf("%6d", &a.ID);
+
+	printf("Please write your gender: ");
+	scanf(" %c", &a.gender);
+
+	printf("Please write your participation score: ");
+	scanf("%i", &a.part);
+
+	printf("Please write your in class exercise score: ");
+	scanf("%i", &a.exer);
+
+	printf("Please write your assignment score: ");
+	scanf("%i", &a.assi);
+
+	printf("Please write your midterm score: ");
+	scanf("%i", &a.mid);
+
+	printf("Please write your final exam score: ");
+	scanf("%i", &a.ex);
+
+	a.final = a.part*0.1 + a.exer*0.1 + a.assi*0.1 + 0.4*a.mid +0.3*a.ex;
+
+if (a.gender == 'M') {
+	printf ("Student ID:%i, Gender:Male, Final score:%i", a.ID, a.final);
+}
+if (a.gender == 'F') {
+	printf ("Student ID:%i, Gender:Female, Final score:%i", a.ID, a.final);
+}
+return 0;
+}

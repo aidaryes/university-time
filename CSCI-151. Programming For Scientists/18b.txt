@@ -1,0 +1,86 @@
+In collaboration of Kunzhol Tauyekel and Yessembayev Aidar
+
+Task 4.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+double minValue(double arr[], int from, int to)
+{
+	if (from == to)
+	{
+		return arr[to];
+	}
+	else if (arr[from] > minValue(arr, from + 1, to))
+	{
+		return minValue(arr, from + 1, to);
+	}
+	else
+	{
+		return arr[from];
+	}
+
+}
+
+void main()
+{
+	setvbuf(stdout, NULL, _IONBF, 0);
+
+	double x[5] = {3, 5, -5, -2, 10};
+
+	printf("Min value: %.1f", minValue(x, 0, 4));
+}
+
+Task 5.
+#include <stdio.h>
+#include <stdlib.h>
+
+void printBinary(int n)
+{
+	if (n / 2 == 0)
+	{
+		printf("1");
+	}
+	else
+	{
+		printBinary(n / 2);
+		printf("%i", n % 2);
+
+
+	}
+
+}
+
+void main()
+{
+	setvbuf(stdout, NULL, _IONBF, 0);
+	printBinary(25);
+
+}
+Task 6:
+#include <stdio.h>
+#include <stdlib.h>
+
+long choose(int n, int k)
+{
+	if (n == k)
+	{
+		return 1;
+	}
+	else if (k == 1)
+	{
+		return n / k;
+	}
+
+	double temp =  (double)choose(n - 1, k - 1) * ((double)n /(double)k);
+	return temp;
+}
+
+
+void main()
+{
+	setvbuf(stdout, NULL, _IONBF, 0);
+
+	printf("%ld", choose(52, 5));
+
+}

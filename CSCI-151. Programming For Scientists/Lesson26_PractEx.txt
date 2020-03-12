@@ -1,0 +1,161 @@
+//In collaboration of Tauyekel Kunzhol and Aidar Yessembayev
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct _weather {
+int rain;
+double temp;
+double wind;
+struct _weather *link;
+} weather;
+
+int sumWeather(weather *point)
+{
+if (point != NULL)
+{
+return point->rain + sumWeather(point->link);
+}
+else
+{
+return 0;
+}
+}
+
+double sumWind(weather *point)
+{
+if (point != NULL)
+{
+return point->wind + sumWind(point->link);
+}
+else
+{
+return 0;
+}
+}
+
+double lowAver(weather *point)
+{
+double min = 9999;
+
+if (point != NULL)
+{
+lowAver(point->link);
+
+if (min > point->temp)
+{
+min = point->temp;
+}
+
+return min;
+}
+else
+{
+return 9999;
+}
+}
+
+double returnRain(weather *point)
+{
+
+if (point != NULL)
+{
+return point->rain;
+returnRain(point->link);
+}
+else
+{
+return 0;
+}
+}
+
+double returnTemp(weather *point)
+{
+
+if (point != NULL)
+{
+return point->temp;
+returnTemp(point->link);
+}
+else
+{
+return 0;
+}
+}
+
+double returnWind(weather *point)
+{
+
+if (point != NULL)
+{
+return point->wind;
+returnWind(point->link);
+}
+else
+{
+return 0;
+}
+}
+
+void printTable(weather *point)
+{
+//printf("Rain Avg.Temp Avg.Wind\n");
+
+//printf("%2i %11lg %11lg\n", point->rain, point->temp, point->wind);
+
+if (point != NULL)
+{
+printf("%2i %11lg %11lg\n", point->rain, point->temp, point->wind);
+printTable(point->link);
+}
+}
+
+double averOfAverOfWind(weather *point, int count)
+{
+return sumWind(point) / count;
+}
+
+void main()
+{
+setvbuf(stdout, NULL, _IONBF, 0);
+
+weather *first = NULL;
+weather *prevNode = NULL;
+
+
+FILE *input = fopen("data.txt", "r");
+
+int i = 0; //counter
+
+while ( i < 12 )
+{
+weather *newNode = malloc(sizeof(weather));
+
+fscanf(input, "%i %lf %lf", &(newNode->rain), &(newNode->temp), &(newNode ->wind));
+
+
+newNode->link = NULL;
+
+if (first == NULL)
+{
+first = newNode;
+}
+else
+{
+prevNode->link = newNode;
+}
+
+prevNode = newNode;
+i++;
+
+}
+
+fclose(input);
+
+//printf("%i", first->rain);
+printf("Total of rainfall: %i\n", sumWeather(first));
+printf("Lower average of temperatures: %lg\n", lowAver(first));
+printf("Average of wind speed averages: %lg\n", averOfAverOfWind(first, i));
+printf("\n");
+printTable(first);
+}

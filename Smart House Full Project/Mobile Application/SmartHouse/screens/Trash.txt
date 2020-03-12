@@ -1,0 +1,17 @@
+  v ControlPanelScreen
+  /* Vverh, vmesto console.log s responsom
+  if(command === 'Temp') {
+    if(status === 0) {
+      this.setState({tempStatus: 0});
+    } else if(status === 1) {
+      this.setState({tempStatus: 0});
+    }
+  }
+  if(command === 'Humid') {
+    if(status === 0) {
+      this.setState({humidStatus: 0});
+    } else if(status === 1) {
+      this.setState({humidStatus: 0});
+    }
+  }
+  */

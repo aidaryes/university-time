@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <math.h>
+int main(void) {
+	setvbuf (stdout, NULL, _IONBF, 0);
+
+	double valueM;
+
+	printf("Task 1");
+	printf("\nPlease write the value in meter:\n");
+	scanf("%lg", &valueM);
+
+		double x=valueM*100;
+		double y=valueM*0.0001;
+		double z=valueM*39.37;
+		double a=valueM*0.00062;
+		double b=valueM*0.00498;
+
+	printf("\nLength converted into cantimeters %lg", x);
+	printf("\nLength converted into myriameters %lg", y);
+	printf("\nLength converted into inches %lg", z);
+	printf("\nLength converted into miles %lg", a);
+	printf("\nLength converted into furlongs %lg", b);
+
+	double valueR;
+	double valueH;
+
+	printf("\nTask 2");
+	printf("\nPlease write the value of radius of the circular base of a cone:\n");
+	scanf("%lg", &valueR);
+
+		printf("\nPlease write the value of height of the circular base of a cone:\n");
+		scanf("%lg", &valueH);
+
+		double p=3.14;
+		double c=p*valueR+3.14*valueR*sqrt(valueH*valueH+valueR*valueR);
+		double d=p*valueR*valueR;
+		double e=0.33*p*valueR*valueR*valueH;
+
+					printf("\nThe surface area of a cone %lg", c);
+					printf("\nArea of the circular base of a cone %lg", d);
+					printf("\nVolume of the given cone %lg", e);
+
+					printf("\nTask3");
+		double par;
+		double exer;
+		double assi;
+		double mid;
+		double fin;
+
+					printf("\nPlease write the value of your participation:\n");
+					scanf("%lg", &par);
+					printf("\nPlease write the value of your in-class exercises:\n");
+					scanf("%lg", &exer);
+					printf("\nPlease write the value of your assignments:\n");
+					scanf("%lg", &assi);
+					printf("\nPlease write the value of your midterm exams:\n");
+					scanf("%lg", &mid);
+					printf("\nPlease write the value of your final exam:\n");
+					scanf("%lg", &fin);
+
+					double all=0.1*par+0.1*exer+0.1*assi+0.4*mid+0.3*fin;
+					printf("\nYour final result %lg %%\n", all);
+
+
+return 0;
+}

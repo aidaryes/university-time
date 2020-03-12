@@ -1,0 +1,267 @@
+//In collaboration of Tauyekel Kunzhol and Aidar Yessembayev
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SIZE 8
+//#define SIZE 12
+
+//#define USE_NAMED_STUDENT
+ #define USE_YEAR_MAJOR_STUDENT
+
+#define USE_INSERTION_SORT
+// #define USE_SELECTION_SORT
+// #define USE_BUBBLE_SORT
+// #define USE_QUICKSORT
+
+
+/*
+ * Select one student record type below,
+ * depending on the above define command
+ */
+#ifdef USE_NAMED_STUDENT
+// Named student type
+typedef struct {
+	int id;
+	char name[12];
+} student;
+#endif
+
+#ifdef USE_YEAR_MAJOR_STUDENT
+// Year-major student type
+typedef struct {
+	int id;
+	int year; // 1, 2, 3, or 4
+	char major[5]; // e.g. "robt", "phys", "math"
+} student;
+#endif
+
+/*
+ * Select one sort function implementation below,
+ * depending on the above define command
+ */
+
+#ifdef USE_SELECTION_SORT
+// Selection sort
+void sort(student *x[]) {
+	int i;
+		     for (i = 0; i < SIZE - 1; i++) {
+
+		          int j, mindex = i;
+		          for (j = i + 1; j < SIZE; j++) {
+		               if (x[j]->id < x[mindex]->id) {
+		                    mindex = j;
+					   }
+		          }
+
+		          student *temp;
+		          temp = x[i];
+
+		          x[i] = x[mindex];
+		          x[mindex] = temp;
+		     }
+
+	// Put your selection sort code here
+}
+#endif
+
+
+// Insertion sort
+#ifdef USE_INSERTION_SORT
+void sort(student *x[]) {
+
+	int i;
+	for (i = 0; i < SIZE; i++) {
+		student *toInsert = x[i];
+ 		int j;
+		for (j = i; j >= 0; j--) {
+			if (j == 0 || x[j-1]->id <= toInsert->id) {
+
+				x[j] = toInsert;
+				break;
+
+			} else {
+				x[j] = x[j - 1];
+			}
+		}
+	}
+	// Put your insertion sort code here
+}
+#endif
+// Bubble sort
+#ifdef USE_BUBBLE_SORT
+void sort(student *x[]) {
+	int i, j;
+
+			for (i = 0; i < SIZE - 1; i++) {
+
+				for (j = 0; j < SIZE - 1 - i; j++) {
+
+					if (x[j]->id > x[j + 1]->id) {
+
+						student *temp = x[j + 1];
+						x[j + 1] = x[j];
+						x[j] = temp;
+					}
+				}
+
+			}
+	// Put your bubble sort code here
+}
+#endif
+// Quick sort
+#ifdef USE_QUICKSORT
+void quicksort(student *x[], int first, int last);
+
+void sort(student *x[]) {
+
+	quicksort(x, 0, SIZE - 1);
+}
+
+int partition(student *x[], int first, int last) {
+
+	int pivot = first;
+
+	int up = first, down = last;
+	while (up < down) {
+
+		while (x[up]->id <= x[pivot]->id && up < last) {
+			up++;
+		}
+		while (x[down]->id > x[pivot]->id) {
+			down--;
+		}
+		if (up < down) {
+			student *temp = x[up];
+			x[up] = x[down];
+			x[down] = temp;
+		}
+	}
+
+	student *temp2 = x[pivot];
+	x[pivot] = x[down];
+	x[down] = temp2;
+
+	return down;
+	// Put your quicksort partition code here
+}
+
+void quicksort(student *x[], int first, int last) {
+
+    if (first < last) {
+        int pivIndex = partition(x, first, last);
+        quicksort(x, first, pivIndex-1);
+        quicksort(x, pivIndex+1, last);
+    }
+}
+#endif
+
+/*
+ * Select one getRecords implementation below,
+ * depending on the student record type
+ */
+
+// Use with named student type
+#ifdef USE_NAMED_STUDENT
+void getRecords(student *x[]) {
+
+	// Opening the input file
+	FILE *file = fopen("data.txt", "r");
+	if (file == NULL) {
+		printf("Cannot find file.");
+		exit(1);
+	}
+	printf("File opened successfully.\n");
+
+	// Reading the records into the array from the file
+	int i;
+	for (i = 0; i < SIZE; i++) {
+		x[i] = malloc(sizeof(student));
+		fscanf(file, "%i %s \n", &x[i]->id, x[i]->name);
+	};
+	fclose(file);
+}
+#endif
+// Use with year-major student type
+#ifdef USE_YEAR_MAJOR_STUDENT
+void getRecords(student *x[]) {
+
+	// Copy, paste, and modify the getRecords code
+	// from above to work with year-major student
+	// records
+	FILE *file = fopen("data2.txt", "r");
+		if (file == NULL) {
+			printf("Cannot find file.");
+			exit(1);
+		}
+		printf("File opened successfully.\n");
+
+		// Reading the records into the array from the file
+		int i;
+		for (i = 0; i < SIZE; i++) {
+			x[i] = malloc(sizeof(student));
+			fscanf(file, "%i %i %s \n", &x[i]->id, &x[i]->year, x[i]->major);
+		};
+		fclose(file);
+}
+#endif
+
+/*
+ * Select one printArray implementation below,
+ * depending on the student record type
+ */
+
+// Use with named student type
+#ifdef USE_NAMED_STUDENT
+void printArray(student *x[]) {
+	int i;
+	for (i = 0; i < SIZE; i++) {
+		printf("%8i %12s \n", x[i]->id, x[i]->name);
+	}
+	printf("\n");
+	// Put your old printArray code here
+}
+#endif
+// Use with year-major student type
+#ifdef USE_YEAR_MAJOR_STUDENT
+void printArray(student *x[]) {
+	int i;
+		for (i = 0; i < SIZE; i++) {
+			printf("%i %i %s \n", x[i]->id, x[i]->year, x[i]->major);
+		}
+		printf("\n");
+	// Copy, paste, and modify your old printArray
+	// code here for year-major student records
+}
+#endif
+// This should work for both student types
+void freeRecords(student *x[]) {
+
+	int i;
+	for (i = 0; i < SIZE; i++) {
+		free(x[i]);
+	}
+}
+
+int main() {
+
+	student *roster[SIZE];
+
+	printf("Testing whatever sorting algorithm was selected \n");
+
+	// Load in the values from the file
+	getRecords(roster);
+
+	// Printing out the roster, in the initial order
+	printArray(roster);
+
+	// Sorting the array (hopefully)
+	sort(roster);
+
+	// Printing out the roster, in sorted order (hopefully)
+	printArray(roster);
+
+	// Free up the items in the array
+	freeRecords(roster);
+
+	return 0;
+}

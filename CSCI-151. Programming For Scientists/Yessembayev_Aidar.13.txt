@@ -1,0 +1,125 @@
+Task 1:
+#include <stdio.h>
+int main (void) {
+int R = 12, C = 12;
+int a[R][C];
+
+int i, j;
+
+/* set matrix elements */
+for (i = 0; i < R; i++) {
+	for (j = 0; j < C; j++) {
+		a[i][j] = i*j;
+	}
+}
+
+/* print matrix elements */
+for (i = 0; i < R; i++) {
+	for (j = 0; j < C; j++) {
+		printf("%5d", a[i][j]);
+	}
+	printf("\n");
+}
+return 0;
+}
+
+Task 2:
+#include <stdio.h>
+int main (void) {
+	int R = 3, C = 4;
+	int a[R][C];
+
+	int i, j, val = 100;
+	int b[C][R];
+
+	/* set matrix elements */
+	for (i = 0; i < R; i++) {
+		for (j = 0; j < C; j++) {
+			a[j][i] = val;
+			val++;
+		}
+	}
+
+	for (i = 0; i < C; i++) {
+		for (j = 0; j < R; j++) {
+			b[j][i] = a[i][j]+25;
+		}
+	}
+
+	for (i = 0; i < R; i++) {
+		for (j = 0; j < C; j++) {
+			printf("%5d", a[j][i]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+	for (i = 0; i < C; i++) {
+			for (j = 0; j < R; j++) {
+				printf("%5d", b[j][i]);
+			}
+			printf("\n");
+		}
+
+return 0;
+}
+
+Task 3:
+
+#include <stdio.h>
+
+
+int main (void) {
+int R = 3, C = 4;
+int a[R][C];
+
+int i, j;
+
+
+for (i = 0; i < R; i++) {
+for (j = 0; j < C; j++) {
+a[i][j] = rand() % 100;
+}
+}
+
+
+for (i = 0; i < R; i++) {
+for (j = 0; j < C; j++) {
+printf("%5d", a[i][j]);
+}
+printf("\n");
+}
+
+int max = a[0][0];
+int min = a[0][0];
+int iMax;
+int jMax;
+int iMin;
+int jMin;
+
+for (i = 0; i < R; i++)
+{
+for (j = 0; j< C; j++)
+{
+if (max < a[i][j])
+{
+max = a[i][j];
+iMax = i;
+jMax = j;
+
+}
+if (min > a[i][j])
+{
+min = a[i][j];
+iMin = i;
+jMin = j;
+}
+}
+}
+
+printf("\nPosition of maximum number is: %i, %i", iMax, jMax);
+
+printf("\nPosition of minimum number is: %i, %i", iMin, jMin);
+
+return 0;
+}
+

@@ -1,0 +1,91 @@
+Task 1:
+#include <stdio.h>
+
+int main (void) {
+setvbuf (stdout, NULL, _IONBF, 0);
+
+int a = 100;
+char text[a];
+printf("Please, write a word: ");
+scanf("%s", text);
+int num = 0;
+int i;
+for(i = 0; i < a; i++) {
+if (text[i] == 'a' || text[i] == 'A') {
+num=num+1;
+}
+}
+printf("\nThere are %i A or a characters in your word", num);
+return 0;
+}
+
+
+Task 2:
+#include <stdio.h>
+
+int main (void) {
+setvbuf (stdout, NULL, _IONBF, 0);
+
+char word[1000];
+int i = -1;
+int j = 0;
+int k = -1;
+int b = 0;
+int c = 0;
+int wordLength[1000];
+
+for (c = 0; c < 1000; c++) {
+wordLength[c] = 0;
+}
+
+while (1) {
+i++;
+word[i] = getchar();
+putchar(word[i]);
+
+	if (word[i] != ' ') {
+		j++;
+	}
+	else if (word[i] == ' ') {
+		k++;
+		wordLength[k] = j;
+		j = 0;
+	}
+
+	if (word[i] == '\n')
+	{
+		break;
+	}
+
+}
+
+k++;
+wordLength[k] = j - 1;
+
+for (b = 0; b < 1000; b++)
+{
+if (wordLength[b] != 0)
+{
+printf("\n%i", wordLength[b]);
+}
+}
+
+int max = 0;
+if (wordLength[0] != 0)
+{
+max = wordLength[0];
+}
+
+for (k = 0; k < 1000; k++)
+{
+if (max < wordLength[k])
+{
+max = wordLength[k];
+}
+}
+
+printf("\nLength of the longest word is %i", max);
+
+
+return 0;
+}

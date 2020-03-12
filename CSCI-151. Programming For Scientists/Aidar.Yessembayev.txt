@@ -1,0 +1,54 @@
+Task 1:
+#include <stdio.h>
+int main (void) {
+setvbuf (stdout, NULL, _IONBF, 0);
+
+int a;
+printf("Please write your final course grade: ");
+scanf("%i", &a);
+ if (a>93) {
+	 printf("You got A");
+ }
+ else if (a>80) {
+	 printf("You got B");
+ }
+ else if (a>70) {
+	 printf("You got C");
+ }
+ 
+ else if (a>60) {
+	 printf("You got C-");
+ }
+
+ else {
+	 printf("You got D");
+ }
+	return 0;
+}
+
+Task 2:
+#include <stdio.h>
+
+int main (void) {
+
+setvbuf (stdout, NULL, _IONBF, 0);
+
+int a;
+
+int i;
+
+printf("Please write a value: ");
+
+scanf("%i", &a);
+
+printf("Factors of %i: ", a);
+
+  for(i=1;i<=a;++i) {
+
+      if(a%i==0) {
+
+         printf("%i ",i);
+      }
+}
+	return 0;
+}

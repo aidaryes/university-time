@@ -1,0 +1,103 @@
+Task 1:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main (void) {
+	int fact = 1;
+	int i;
+	int j;
+	int array[10];
+	array[0] = fact;
+
+
+	for (i = 1; i < 10; i++)
+	{
+		fact *= i;
+		array[i] = fact;
+	}
+
+	for (j = 0; j < 10; j++)
+	{
+		printf("%i ", array[j]);
+	}
+	return 0;
+}
+
+Task 2:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main (void) {
+	srand (time(NULL));
+
+	int array[20];
+	int i;
+	int j;
+
+
+	for (i = 0; i < 20; i++)
+	{
+		array[i] = (rand() % 51) + 50;
+	}
+
+	for (j = 0; j < 20; j++)
+	{
+		printf("%i ", array[j]);
+	}
+	return 0;
+}
+
+Task 3:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main (void)
+{
+	srand (time(NULL));
+
+	int array[20];
+	int i;
+	int j;
+	int max;
+	int min;
+	double aver = 0.0;
+	double aver2 = 0.0;
+
+
+	for (i = 0; i < 20; i++)
+	{
+		array[i] = (rand() % 51) + 50;
+	}
+
+	for (j = 0; j < 20; j++)
+	{
+		printf("%i ", array[j]);
+	}
+
+
+	max = array[0];
+	min = array[0];
+	aver += array[0];
+
+
+	for (j = 1; j < 20; j++)
+	{
+		if (max < array[j])
+		{
+			max = array[j];
+		}
+
+		if (min > array[j])
+		{
+			min = array[j];
+		}
+
+		aver += array[j];
+
+	}
+
+	aver2 = aver/20;
+
+	printf("\n\nMaximum number: %i \nMinimum number: %i \nAverage number: %lf", max, min, aver2);
+return 0;
+}
